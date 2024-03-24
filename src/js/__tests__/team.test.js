@@ -1,32 +1,47 @@
 import Team from '../team.js'
 import Character from '../character.js'
 
+const testTeam = new Team();
+const char1 = new Character('Ivan', 'Human');
+const char2 = new Character('Marya', 'Human');
 
 test('Добавление персонажа', () => {
-    Team.add(Character);
-    expect(Team.toArray()).toEqual([{
+    testTeam.add(char1);
+    expect(testTeam.toArray()).toEqual([{
         name: 'Ivan',
         type: 'Human',
+        attack: null,
+        defence: null,
+        health: 100,
+        level: 1,
     }]);
 });
 
 test('Дубликат персонажа', () => {
     expect(() => {
-        Team.add(Character);
-        Team.add(Character);
+        testTeam.add(char1);
+        testTeam.add(char1);
     }).toThrow(new Error('Дублирование!!!'));
 });
 
 test('Добавление двух и более персонажей', () => {
-    Team.addAll(Character, Character);
-    expect(Team.toArray()).toEqual([
+    testTeam.addAll(char1, char2);
+    expect(testTeam.toArray()).toEqual([
         {
             name: 'Ivan',
-            type: 'Human'
+            type: 'Human',
+            attack: null,
+            defence: null,
+            health: 100,
+            level: 1,
         },
         {
             name: 'Marya',
-            type: 'Human'
+            type: 'Human',
+            attack: null,
+            defence: null,
+            health: 100,
+            level: 1,
         },
     ]);
 });
